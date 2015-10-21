@@ -12,5 +12,7 @@ Template.singlePerson.helpers
     Meteor.users.findOne @receiver
   age: ->
     @years.toFixed(2)
+  mangosDestroyed: ->
+
 Template.singlePerson.onRendered ->
   @$(".menu .item").tab()

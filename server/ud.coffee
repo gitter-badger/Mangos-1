@@ -18,6 +18,7 @@ Meteor.setInterval (->
     Organisations.update orgaA[i],
       $inc:
         mangos: -takeUD
+        mangosDestroyed: takeUD
 
   for person, j in peopleA
     timeSinceVerified = peopleA[j].years - peopleA[j].verifiedAt
@@ -29,6 +30,8 @@ Meteor.setInterval (->
         $inc:
           mangos: addUD - takeUD
           years: 0.0000019
+          mangosDestroyed: takeUD
+          mangosGenerated: addUD
         $set:
           percent: percent
 

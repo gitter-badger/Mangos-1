@@ -24,3 +24,9 @@ Template.overviewPerson.helpers
     Meteor.users.findOne @receiver
   receiverOrga: ->
     Organisations.findOne @receiver
+  mangosDestroyed: ->
+    @mangosDestroyed.toFixed(2)
+  mangosGenerated: ->
+    @mangosGenerated.toFixed(2)
+
+

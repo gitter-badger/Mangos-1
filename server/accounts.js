@@ -14,6 +14,8 @@ Accounts.onCreateUser(function(options, user) {
   user.mangos = 0;
   user.verified = false;
   user.verifiedAt = -5;
+  user.mangosDestroyed = 0;
+  user.mangosGenerated = 0;
   return user;
 });
 

@@ -12,6 +12,13 @@ template(name="overviewPerson")
     .statistic
       .value #{totalTime}
       .label Minutes invested
+    .statistic
+      .value #{mangosGenerated}
+      .label Mangos generated
+    .statistic
+      .value #{mangosDestroyed}
+      .label Mangos destroyed
+    mangosGenerated
   .ui.divider
   .ui.feed(style="padding: 1em 3em")
     each transactions
