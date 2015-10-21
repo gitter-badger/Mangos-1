@@ -16,8 +16,12 @@ template(name="subActions")
       thead
         tr
           th Action
-          th Time (#{totalTime})
+          th Time
           th Status
+          th Factor
+          th Mangos wanted
+          th Mangos received
+          th Mangos extra
       tbody
       each actions
         tr
@@ -29,3 +33,7 @@ template(name="subActions")
                   .sub.header by #{createdBy.username}
           td #{time} min
           td #{status}
+          td #{factor}
+          td #{mangosWanted}
+          td #{mangosReceived}
+          td #{mangosReceivedExtra}

@@ -1,8 +1,11 @@
 Template.subPeople.helpers
   shares: ->
     Shares.find {childOf: @_id}
-  percent: ->
-    totalTime = Projects.findOne(@childOf).totalTime
-    (@totalTime / totalTime * 100).toFixed(3)
   createdBy: ->
     Meteor.users.findOne @createdBy
+  mangosWanted: ->
+    @mangosWanted.toFixed(2)
+  mangosReceived: ->
+    @mangosReceived.toFixed(2)
+  mangosReceivedExtra: ->
+    @mangosReceivedExtra.toFixed(2)

@@ -1,25 +1,20 @@
 template(name='transactions')
   #main
-    table.ui.very.basic.celled.table
-      thead
-        tr
-          th Sender
-          th Mangos
-          th Receiver
-          th Project / Orga
-          th Date
-          th Message
-      tbody
+    .ui.feed(style="padding: 1em 3em")
       each transactions
-        tr
-          td
-            a(href="/people/#{sender._id}") #{sender.username}
-          td #{mangos}
-          td
-            a(href="/people/#{receiver._id}") #{receiver.username}
-            a(href="/organisations/#{organisation._id}") #{organisation.name}
-          td
-            a(href="/projects/#{project._id}") #{project.name}
-            a(href="/organisations/#{organisation._id}") #{organisation.name}
-          td #{createdAt}
-          td #{message}
+        .event
+          .label
+            a(href="/people/#{sender._id}")
+              img(src='#{sender.profile.picture}')
+          .content
+            .date #{createdAt}
+            .summary
+              a(href="/people/#{sender._id}") #{sender.username}
+              | has given #{mangos} Mangos to
+              a(href="/people/#{receiver._id}") #{receiver.username}
+              | for the action:
+              a(href="/actions/#{action._id}") #{action.name}
+              | in the
+              a(href="/projects/#{project._id}") #{project.name}
+              | Project
+            .exta.text #{message}

@@ -1,6 +1,4 @@
-Template.overviewProject.helpers
-  shares: ->
-    Shares.find {childOf: @_id}
+Template.projectOverview.helpers
   createdBy: ->
     Meteor.users.findOne @createdBy
   user: ->
@@ -25,6 +23,12 @@ Template.overviewProject.helpers
     for transfers, i in array
       total += array[i].mangosWanted
     return total.toFixed(2)
+  totalMangosExtra: ->
+    array = Actions.find({childOf: @_id}).fetch()
+    total = 0
+    for transfers, i in array
+      total += array[i].mangosReceivedExtra
+    return total.toFixed(2)
   totalTime: ->
     array = Actions.find({childOf: @_id}).fetch()
     console.log array
@@ -35,16 +39,17 @@ Template.overviewProject.helpers
     return total
 
   transactions: ->
-    Transactions.find {childOf: @_id},
+    Transactions.find {project: @_id},
       sort:
         createdAt: -1
   receiver: ->
     Meteor.users.findOne(@receiver)
   sender: ->
     Meteor.users.findOne(@sender)
-  project: ->
-    Projects.findOne(@childOf).name
   mangos: ->
     @mangos.toFixed(3)
   action: ->
-    Actions.findOne(@childOf)
+    Actions.findOne @action
+  shares: ->
+    Shares.find {childOf: @_id}
+

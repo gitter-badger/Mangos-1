@@ -4,8 +4,10 @@ template(name="subPeople")
       thead
         tr
           th Person
-          th Min (#{totalTime})
-          th Share
+          th Time invested
+          th Mangos wanted
+          th Mangos received
+          th Mangos extra
       tbody
         each shares
           tr
@@ -15,7 +17,8 @@ template(name="subPeople")
                   img.ui.mini.rounded.image(src="#{createdBy.profile.picture}")
                   .content #{createdBy.username}
                     .sub.header
-                      | Placeholder
+                      | Contributor
             td #{totalTime}
-            td #{percent}%
-
+            td #{mangosWanted}
+            td #{mangosReceived}
+            td #{mangosReceivedExtra}

@@ -5,6 +5,12 @@ Template.subActions.helpers
         createdAt: -1
   createdBy: ->
     Meteor.users.findOne @createdBy
+  mangosWanted: ->
+    @mangosWanted.toFixed(2)
+  mangosReceived: ->
+    @mangosReceived.toFixed(2)
+  mangosReceivedExtra: ->
+    @mangosReceivedExtra.toFixed(2)
 
 Template.subActions.onRendered ->
   $('.addAction').validate

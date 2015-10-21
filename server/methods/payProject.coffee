@@ -11,30 +11,54 @@ Meteor.methods
       actionsA = Actions.find(childOf: projectId).fetch()
       totalMangosWanted = 0
       totalMangosReceived = 0
+      addMangosExtra = 0
+
+      #Calculate totals
       for action, i in actionsA
         totalMangosWanted += actionsA[i].mangosWanted
         totalMangosReceived += actionsA[i].mangosReceived
       wantedReceivedDiff = totalMangosWanted - totalMangosReceived
 
-      if wantedReceivedDiff >= amount
-        for action, i in actionsA
+      for action, i in actionsA
+        #Define amount of  mangos to be added
+        if wantedReceivedDiff >= amount
           addMangos = (actionsA[i].mangosWanted / totalMangosWanted * amount)
-          receiver = actionsA[i].createdBy
-          Meteor.users.update receiver,
-            $inc:
-              mangos: addMangos
+        else
+          extraMangos = (amount - wantedReceivedDiff)
+          addMangos = (actionsA[i].mangosWanted - actionsA[i].mangosReceived)
+          addMangosExtra = (actionsA[i].mangosWanted / totalMangosWanted * extraMangos)
+        receiver = actionsA[i].createdBy
 
-          actionId = actionsA[i]._id
-          Actions.update actionId,
-            $inc:
-              mangosReceived: addMangos
+        #Add defined mangos to User account
+        Meteor.users.update receiver,
+          $inc:
+            mangos: addMangos + addMangosExtra
 
-          #Add the Transaction to the Transactions Collection for History
-          Transactions.insert
-            createdAt: new Date()
-            createdBy: Meteor.userId()
-            mangos: addMangos
-            sender: Meteor.userId()
-            message: message
-            receiver: receiver
-            childOf: actionId
+        #Add the new recevied mangos to the action
+        actionId = actionsA[i]._id
+        Actions.update actionId,
+          $inc:
+            mangosReceived: addMangos
+            mangosReceivedExtra: addMangosExtra
+
+        #Add the Transaction to the Transactions Collection for History
+        Transactions.insert
+          createdAt: new Date()
+          createdBy: Meteor.userId()
+          mangos: addMangos + addMangosExtra
+          sender: Meteor.userId()
+          message: message
+          receiver: receiver
+          action: actionId
+          project: projectId
+
+        #Find share id of current action and project
+        shareId = Shares.findOne '$and': [
+          { childOf: actionsA[i].childOf }
+          { createdBy: actionsA[i].createdBy }
+        ]
+        #Update the corresponding Share document
+        Shares.update shareId,
+          $inc:
+            mangosReceived: addMangos
+            mangosReceivedExtra: addMangosExtra

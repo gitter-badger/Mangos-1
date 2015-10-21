@@ -28,7 +28,9 @@ Template.transactions.helpers
   mangos: ->
     @mangos.toFixed(3)
   project: ->
-    Projects.findOne(@project)
+    Projects.findOne @project
+  action: ->
+    Actions.findOne @action
 
 Template.transactions.onRendered ->
   $('#transfer').validate

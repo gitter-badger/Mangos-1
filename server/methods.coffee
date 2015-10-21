@@ -32,13 +32,6 @@ Meteor.methods
           name: name
           totalTime: 1
           description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ta."
-      #Insert share into shares collection (temporary workaround)
-      Shares.insert
-        createdAt: new Date()
-        createdBy: Meteor.userId()
-        person: Meteor.userId()
-        totalTime: 1
-        childOf: projectId
 
   #Add new Action to project
   addAction: (name, min, projectId) ->
@@ -53,8 +46,48 @@ Meteor.methods
         factor: 10
         mangosWanted: mangosWanted
         mangosReceived: 0
+        mangosReceivedExtra: 0
         childOf: projectId
         status: "Done"
+
+      #Find the respective share document for this user and project
+      shareId = Shares.findOne '$and': [
+        { childOf: projectId }
+        { createdBy: Meteor.userId() }
+      ]
+      console.log shareId
+      if shareId
+        #Find all actions belonging to this share
+        actionsA = Actions.find('$and': [
+          {childOf: projectId}
+          {createdBy: Meteor.userId() }
+        ]).fetch()
+        console.log actionsA
+        #Calculate totalTime on this share
+        totalTime = 0
+        totalMangosWanted = 0
+        for action, i in actionsA
+          totalTime += actionsA[i].time
+          totalMangosWanted += actionsA[i].mangosWanted
+
+        console.log totalTime + totalMangosWanted
+        #Enter totals into share document
+        Shares.update shareId,
+          $set:
+            totalTime: totalTime
+            mangosWanted: totalMangosWanted
+
+      #Create new share document
+      else
+        Shares.insert
+          createdAt: new Date()
+          createdBy: Meteor.userId()
+          childOf: projectId
+          totalTime: min
+          mangosWanted: mangosWanted
+          mangosReceived: 0
+          mangosReceivedExtra: 0
+
 
   #Verify a Person
   verifyPerson: (person) ->
@@ -115,7 +148,6 @@ Meteor.methods
         sender: Meteor.userId()
         message: message
         receiver: organisationId
-        childOf: organisationId
 
   addProjectToOrga: (projectId, orgaId) ->
     if (Meteor.user().verified and Organisations.findOne(orgaId).createdBy is Meteor.userId())
