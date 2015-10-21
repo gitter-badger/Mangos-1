@@ -5,6 +5,9 @@ template(name='actions')
         tr
           th Action
           th Time
+          th Factor
+          th Mangos wanted
+          th Mangos received
           th Project
       tbody
       each actions
@@ -17,4 +20,9 @@ template(name='actions')
                 .sub.header
                   | #{createdBy.username}
           td #{time} min
-          td #{project.name}
+          td #{factor}
+          td #{mangosWanted}
+          td #{mangosReceived}
+          td
+            each projects
+              | #{name}

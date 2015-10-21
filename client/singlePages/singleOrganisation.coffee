@@ -1,10 +1,10 @@
 Template.singleOrganisation.helpers
   maintainer: ->
-    Meteor.users.findOne(@createdBy)
+    Meteor.users.findOne @createdBy
   transactionsCount: ->
-    Transactions.find({organisation: @_id}).count()
+    Transactions.find({childOf: @_id}).count()
   projectCount: ->
-    Projects.find({organisations: @_id}).count()
+    Projects.find({childOf: @_id}).count()
   messageCount: ->
     Messages.find({childOf: @_id}).count()
 

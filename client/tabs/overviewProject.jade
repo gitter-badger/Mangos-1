@@ -1,4 +1,4 @@
-template(name="subOverview")
+template(name="overviewProject")
   .ui.ten.cards(style="padding: 1em 2em 0.5em 2em")
     each shares
       a(href="/people/#{createdBy._id}").card
@@ -28,11 +28,14 @@ template(name="subOverview")
       .value #{messageCount}
       .label Messages
     .statistic
-      .value #{totalMangos}
+      .value #{totalMangosReceived}
       .label Mangos received
     .statistic
+      .value #{totalMangosWanted}
+      .label Mangos wanted
+    .statistic
       .value #{totalTime}
-      .label Minutes invested
+      .label Min invested
   .ui.divider
   .ui.feed(style="padding: 1em 3em")
     each transactions
@@ -46,4 +49,5 @@ template(name="subOverview")
             a(href="/people/#{sender._id}") #{sender.username}
             | has given #{mangos} Mangos to
             a(href="/people/#{receiver._id}") #{receiver.username}
+            | for the action #{action.name}
           .exta.text #{message}

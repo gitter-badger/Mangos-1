@@ -2,11 +2,11 @@ Template.singleProject.helpers
   maintainer: ->
     Meteor.users.findOne(@createdBy)
   peopleCount: ->
-    Shares.find({project: @_id}).count()
+    Shares.find({childOf: @_id}).count()
   transactionsCount: ->
-    Transactions.find({project: @_id}).count()
+    Transactions.find({childOf: @_id}).count()
   actionsCount: ->
-    Actions.find({project: @_id}).count()
+    Actions.find({childOf: @_id}).count()
   messageCount: ->
     Messages.find({childOf: @_id}).count()
 

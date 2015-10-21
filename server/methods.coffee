@@ -21,35 +21,6 @@ Meteor.methods
         receiver: receiver
         message: message
 
-  #Transfer mangos to project and distribute according to shares to project members
-  payProject: (projectId, amount, message) ->
-    if (Meteor.user().verified and amount <= Meteor.user().mangos)
-      #Remove the Transaction amount from the Senders Account
-      Meteor.users.update Meteor.userId(),
-        $inc:
-          mangos: -amount
-      #Get all shares from project
-      sharesA = Shares.find({project: projectId}).fetch()
-      totalTime = Projects.findOne(projectId).totalTime
-      for person, i in sharesA
-        #Add the Transaction amount to Receiver Account
-        addMangos = sharesA[i].totalTime / totalTime * amount
-        receiver = sharesA[i].person
-        Meteor.users.update receiver,
-          $inc:
-            mangos: addMangos
-
-        #Add the Transaction to the Transactions Collection for History
-        Transactions.insert
-          createdAt: new Date()
-          createdBy: Meteor.userId()
-          mangos: addMangos
-          sender: Meteor.userId()
-          message: message
-          receiver: receiver
-          project: projectId
-
-
   #Create new Project
   addProjects: (name) ->
     if (Meteor.user().verified)
@@ -67,63 +38,23 @@ Meteor.methods
         createdBy: Meteor.userId()
         person: Meteor.userId()
         totalTime: 1
-        project: projectId
+        childOf: projectId
 
   #Add new Action to project
   addAction: (name, min, projectId) ->
+    factor = 10
+    mangosWanted = (min / 60 * factor)
     if (Meteor.user().verified)
       Actions.insert
         createdAt: new Date()
         createdBy: Meteor.userId()
         name: name
         time: min
-        project: projectId
+        factor: 10
+        mangosWanted: mangosWanted
+        mangosReceived: 0
+        childOf: projectId
         status: "Done"
-
-      #Calculate total time spended on this project
-      actionsA = Actions.find({project: projectId}).fetch()
-      totalTime = 0
-      for action, i in actionsA
-        totalTime += actionsA[i].time
-
-      #Enter calculated totalTime into project document
-      Projects.update projectId,
-        $set:
-          totalTime: totalTime
-
-      #Find the respective share document for this user and project
-      shareId = Shares.findOne '$and': [
-        { project: projectId }
-        { person: Meteor.userId() }
-      ]
-
-      if shareId
-        #Find all actions belonging to this share
-        actionsA = Actions.find('$and': [
-          {project: projectId}
-          {createdBy: Meteor.userId() }
-        ]).fetch()
-
-        #Calculate totalTime on this share
-        console.log actionsA
-        totalTime = 0
-        for action, i in actionsA
-          totalTime += actionsA[i].time
-
-        #Enter totalTime into share document
-        Shares.update shareId,
-          $set:
-            totalTime: totalTime
-
-      #Create new share document
-      else
-        shareId =
-          Shares.insert
-            createdAt: new Date()
-            createdBy: Meteor.userId()
-            person: Meteor.userId()
-            totalTime: min
-            project: projectId
 
   #Verify a Person
   verifyPerson: (person) ->
@@ -145,7 +76,6 @@ Meteor.methods
       console.log "Your are not allowed to verify"
 
   addMessage: (projectId, message) ->
-    console.log projectId + message
     if (Meteor.user().verified)
       Messages.insert
         createdAt: new Date()
@@ -185,10 +115,10 @@ Meteor.methods
         sender: Meteor.userId()
         message: message
         receiver: organisationId
-        organisation: organisationId
+        childOf: organisationId
 
   addProjectToOrga: (projectId, orgaId) ->
     if (Meteor.user().verified and Organisations.findOne(orgaId).createdBy is Meteor.userId())
       Projects.update projectId,
         $addToSet:
-          organisations: orgaId
+          childOf: orgaId

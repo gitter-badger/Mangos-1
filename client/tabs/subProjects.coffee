@@ -1,8 +1,8 @@
 Template.subProjects.helpers
   projects: ->
-    Projects.find organisations: @_id
+    Projects.find childOf: @_id
   projectsSelect: ->
-    Projects.find organisations: $ne: @_id,
+    Projects.find childOf: $ne: @_id,
       sort:
         name: 1
   id: ->
@@ -10,15 +10,15 @@ Template.subProjects.helpers
   createdBy: ->
     Meteor.users.findOne @createdBy
   peopleCount: ->
-    Shares.find({project: @_id}).count()
+    Shares.find({childOf: @_id}).count()
   transactionsCount: ->
-    Transactions.find({project: @_id}).count()
+    Transactions.find({childOf: @_id}).count()
   actionsCount: ->
-    Actions.find({project: @_id}).count()
+    Actions.find({childOf: @_id}).count()
   messageCount: ->
-    Messages.find({project: @_id}).count()
+    Messages.find({childOf: @_id}).count()
   totalMangos: ->
-    array = Transactions.find({project: @_id}).fetch()
+    array = Transactions.find({childOf: @_id}).fetch()
     console.log array
     total = 0
     for transfers, i in array

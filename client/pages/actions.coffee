@@ -3,7 +3,11 @@ Template.actions.helpers
     Actions.find {},
       sort:
         createdAt: -1
-  project: ->
-    Projects.findOne @project
+  projects: ->
+    Projects.find @childOf
   createdBy: ->
     Meteor.users.findOne @createdBy
+  mangosWanted: ->
+    @mangosWanted.toFixed(2)
+  mangosReceived: ->
+    @mangosReceived.toFixed(2)

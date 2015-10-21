@@ -1,6 +1,6 @@
 Template.subActions.helpers
   actions: ->
-    Actions.find {project: @_id},
+    Actions.find {childOf: @_id},
       sort:
         createdAt: -1
   createdBy: ->

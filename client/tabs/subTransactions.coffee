@@ -1,6 +1,6 @@
 Template.subTransactions.helpers
   transactions: ->
-    Transactions.find {project: @_id},
+    Transactions.find {childOf: @_id},
       sort:
         createdAt: -1
   receiver: ->
