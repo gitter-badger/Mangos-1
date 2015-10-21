@@ -43,7 +43,7 @@ Meteor.methods
         createdBy: Meteor.userId()
         name: name
         time: min
-        factor: 10
+        factor: 100
         mangosWanted: mangosWanted
         mangosReceived: 0
         mangosReceivedExtra: 0
