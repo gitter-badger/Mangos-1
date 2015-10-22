@@ -6,25 +6,14 @@ Template.transactions.helpers
   createdAt: ->
     time = new Date(@createdAt).toDateString()
     time.substr 0, time.length - 4
-
-  settings: ->
-    {
-      position: 'bottom'
-      limit: 10
-      rules: [ {
-        collection: Meteor.users
-        field: 'username'
-        matchAll: true
-        template: Template.searchUserDropDown
-        noMatchTemplate: Template.noMatch
-      } ]
-    }
+  createdBy: ->
+    Meteor.users.findOne @createdBy
   sender: ->
-    Meteor.users.findOne(@.sender)
+    Meteor.users.findOne @sender
   receiver: ->
-    Meteor.users.findOne(@.receiver)
+    Meteor.users.findOne @receiver
   organisation: ->
-    Organisations.findOne(@.receiver)
+    Organisations.findOne @receiver
   mangos: ->
     @mangos.toFixed(3)
   project: ->

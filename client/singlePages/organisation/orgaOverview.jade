@@ -1,4 +1,4 @@
-template(name="organisationOverview")
+template(name="orgaOverview")
   img.ui.image.fluid(src="#{banner}")
   h3(style="font-weight: 300; margin-top: 0.5em; padding: 0.5em 2em") #{description}
   .ui.divider
@@ -7,7 +7,7 @@ template(name="organisationOverview")
       .value #{totalMangos}
       .label Mangos
     .statistic
-      .value #{transactionsCount}
+      .value #{transactionCount}
       .label Transactions
     .statistic
       .value #{messageCount}
@@ -18,7 +18,8 @@ template(name="organisationOverview")
     each transactions
       .event
         .label
-          img(src='#{sender.profile.picture}')
+          a(href="/people/#{sender._id}")
+            img(src='#{sender.profile.picture}')
         .content
           .date #{createdAt}
           .summary

@@ -21,7 +21,7 @@ Router.map ->
     data: ->
       Actions.findOne @params._id
   @route 'organisations', path: '/organisations'
-  @route 'singleOrganisation',
+  @route 'orgaLayout',
     path: '/organisations/:_id'
     data: ->
       Organisations.findOne @params._id

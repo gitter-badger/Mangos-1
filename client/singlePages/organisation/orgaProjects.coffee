@@ -1,4 +1,4 @@
-Template.subProjects.helpers
+Template.orgaProjects.helpers
   projects: ->
     Projects.find childOf: @_id
   projectsSelect: ->
@@ -26,13 +26,13 @@ Template.subProjects.helpers
       console.log total
     return total.toFixed(2)
 
-Template.subProjects.onRendered ->
+Template.orgaProjects.onRendered ->
   @$('.dropdown').dropdown
     onChange: (value) ->
       Meteor.call 'addProjectToOrga', value, Session.get 'orgaId'
       $('.dropdown').dropdown('restore default')
 
-Template.subProjects.events
+Template.orgaProjects.events
   "submit .addProject": (event) ->
     event.preventDefault()
     projectId = event.target.name.value

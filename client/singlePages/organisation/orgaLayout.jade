@@ -1,4 +1,4 @@
-template(name='singleOrganisation')
+template(name='orgaLayout')
   .ui.padded.grid.stackable
     .three.wide.column(style="border-right: solid 1px lightgrey;padding: 1.5em;")
       h3.ui.header
@@ -19,13 +19,16 @@ template(name='singleOrganisation')
       .ui.vertical.fluid.secondary.menu
         a.active.item(data-tab="overview") Overview
         a.item(data-tab="projects") Projects (#{projectCount})
+        a.item(data-tab="transactions") Transactions (#{transactionCount})
         a.item(data-tab="messages") Messages (#{messageCount})
 
     .thirteen.wide.column.streched(style="padding: 0")
       .ui.active.attached.tab(data-tab="overview")
-        +organisationOverview
+        +orgaOverview
       .ui.attached.tab(data-tab="projects")
-        +subProjects
+        +orgaProjects
+      .ui.attached.tab(data-tab="transactions")
+        +orgaTransactions
       .ui.attached.tab(data-tab="messages")
         +subMessages
 
