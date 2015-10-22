@@ -28,12 +28,12 @@ Template.singleOrganisation.onRendered ->
         max: "You don't have enough mangos"
 
 Template.singleOrganisation.events
-  'submit .payOrganisation': (event) ->
+  'submit .personToOrganisation': (event) ->
     event.preventDefault()
     amount = event.target.amount.value
     message = event.target.message.value
-    organisationId = @._id
-    Meteor.call 'payOrganisation', organisationId, amount, message
+    orgaId = @._id
+    Meteor.call 'personToOrganisation', orgaId, amount, message
     event.target.message.value = null
     event.target.amount.value = null
     return
