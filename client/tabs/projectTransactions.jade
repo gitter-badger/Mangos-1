@@ -1,17 +1,18 @@
 template(name="projectTransactions")
-  #main
-    .ui.feed(style="padding: 1em 3em")
-      each transactions
-        .event
-          .label
-            a(href="/people/#{sender._id}")
-              img(src='#{sender.profile.picture}')
-          .content
-            .date #{createdAt}
-            .summary
-              a(href="/people/#{sender._id}") #{sender.username}
-              | has given #{mangos} Mangos to
-              a(href="/people/#{receiver._id}") #{receiver.username}
-              | for the action:
-              a(href="/actions/#{action._id}") #{action.name}
-            .exta.text #{message}
+  #main.ui.feed
+    each transactions
+      .event
+        .label
+          a(href="/people/#{sender._id}")
+            img(src='#{createdBy.profile.picture}')
+        .content
+          .date #{createdAt}
+          .summary
+            a(href="/project/#{sender._id}") #{sender.name}
+            | has payed out #{mangos} Mangos from
+            a(href="/people/#{createdBy._id}") #{createdBy.username}
+            | to
+            a(href="/people/#{receiver._id}") #{receiver.username}
+            | for the action:
+            a(href="/actions/#{action._id}") #{action.name}
+          .exta.text #{message}

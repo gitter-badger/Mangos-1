@@ -17,9 +17,15 @@ Template.transactions.helpers
   mangos: ->
     @mangos.toFixed(3)
   project: ->
-    Projects.findOne @project
+    Projects.findOne @receiver
   action: ->
     Actions.findOne @action
+  personToOrganisation: ->
+    if @type is "personToOrganisation"
+      return true
+  personToProject: ->
+    if @type is "personToProject"
+      return true
 
 Template.transactions.onRendered ->
   $('#transfer').validate

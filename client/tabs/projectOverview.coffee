@@ -39,7 +39,7 @@ Template.projectOverview.helpers
     return total
 
   transactions: ->
-    Transactions.find {project: @_id},
+    Transactions.find {receiver: @_id},
       sort:
         createdAt: -1
   receiver: ->

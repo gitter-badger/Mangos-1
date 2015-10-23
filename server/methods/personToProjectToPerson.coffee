@@ -13,6 +13,16 @@ Meteor.methods
       totalMangosReceived = 0
       addMangosExtra = 0
 
+      #Work around for accumulated Transactions
+      Transactions.insert
+        createdAt: new Date()
+        createdBy: Meteor.userId()
+        mangos: +amount
+        sender: Meteor.userId()
+        message: message
+        receiver: projectId
+        type: "personToProject"
+
       #Calculate totals
       for action, i in actionsA
         totalMangosWanted += actionsA[i].mangosWanted
@@ -46,11 +56,11 @@ Meteor.methods
           createdAt: new Date()
           createdBy: Meteor.userId()
           mangos: addMangos + addMangosExtra
-          sender: Meteor.userId()
+          sender: projectId
           message: message
           receiver: receiver
           action: actionId
-          project: projectId
+          type: "projectToPerson"
 
         #Find share id of current action and project
         shareId = Shares.findOne '$and': [

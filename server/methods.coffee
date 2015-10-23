@@ -32,10 +32,32 @@ Meteor.methods
           name: name
           totalTime: 1
           description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ta."
+      factor = 100
+      mangosWanted = (1 / 60 * factor)
+      Actions.insert
+        createdAt: new Date()
+        createdBy: Meteor.userId()
+        name: "Created project"
+        time: 1
+        factor: factor
+        mangosWanted: mangosWanted
+        mangosReceived: 0
+        mangosReceivedExtra: 0
+        childOf: projectId
+        status: "Done"
+
+      Shares.insert
+        createdAt: new Date()
+        createdBy: Meteor.userId()
+        childOf: projectId
+        totalTime: 1
+        mangosWanted: mangosWanted
+        mangosReceived: 0
+        mangosReceivedExtra: 0
 
   #Add new Action to project
   addAction: (name, min, projectId) ->
-    factor = 10
+    factor = 100
     mangosWanted = (min / 60 * factor)
     if (Meteor.user().verified)
       Actions.insert
@@ -43,7 +65,7 @@ Meteor.methods
         createdBy: Meteor.userId()
         name: name
         time: min
-        factor: 100
+        factor: factor
         mangosWanted: mangosWanted
         mangosReceived: 0
         mangosReceivedExtra: 0

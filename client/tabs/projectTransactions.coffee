@@ -39,13 +39,13 @@ Template.projectTransactions.helpers
     return total
 
   transactions: ->
-    Transactions.find {project: @_id},
+    Transactions.find {sender: @_id},
       sort:
         createdAt: -1
   receiver: ->
     Meteor.users.findOne(@receiver)
   sender: ->
-    Meteor.users.findOne(@sender)
+    Projects.findOne(@sender)
   mangos: ->
     @mangos.toFixed(3)
   action: ->
