@@ -1,6 +1,5 @@
 Meteor.methods
-#Transfer mangos to project and distribute according to shares to project members
-  payProject: (projectId, amount, message) ->
+  organisationToProject: (orgaId, projectId, amount, message) ->
     if (Meteor.user().verified and amount <= Meteor.user().mangos)
       #Remove the Transaction amount from the Senders Account
       Meteor.users.update Meteor.userId(),
@@ -19,10 +18,10 @@ Meteor.methods
           createdAt: new Date()
           createdBy: Meteor.userId()
           mangos: +amount
-          sender: Meteor.userId()
+          sender: orgaId
           message: message
           receiver: projectId
-          type: "personToProject"
+          type: "organisationToProject"
 
       #Calculate totals
       for action, i in actionsA

@@ -4,7 +4,7 @@ Template.singleProject.helpers
   peopleCount: ->
     Shares.find({childOf: @_id}).count()
   transactionsCount: ->
-    Transactions.find({childOf: @_id}).count()
+    Transactions.find({sender: @_id}).count()
   actionsCount: ->
     Actions.find({childOf: @_id}).count()
   messageCount: ->

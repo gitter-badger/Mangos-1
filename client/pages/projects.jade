@@ -14,8 +14,9 @@ template(name='projects')
           th Project
           th Contributors
           th Min
+          th Mangos wanted
           th Mangos received
-          th Transactions
+          th Mangos extra
           th Actions
           th Messages
 
@@ -31,7 +32,8 @@ template(name='projects')
                   .sub.header #{createdBy.username}
           td #{peopleCount}
           td #{totalTime}
-          td #{totalMangos}
-          td #{transactionsCount}
+          td #{mangosWanted}
+          td #{mangosReceived}
+          td #{mangosReceivedExtra}
           td #{actionsCount}
           td #{messageCount}

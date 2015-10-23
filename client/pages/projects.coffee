@@ -6,19 +6,41 @@ Template.projects.helpers
   createdBy: ->
     Meteor.users.findOne @createdBy
   peopleCount: ->
-    Shares.find({project: @_id}).count()
-  transactionsCount: ->
-    Transactions.find({project: @_id}).count()
+    Shares.find({childOf: @_id}).count()
   actionsCount: ->
-    Actions.find({project: @_id}).count()
+    Actions.find({childOf: @_id}).count()
   messageCount: ->
-    Messages.find({project: @_id}).count()
-  totalMangos: ->
-    array = Transactions.find({project: @_id}).fetch()
+    Messages.find({childOf: @_id}).count()
+  totalTime: ->
+    array = Actions.find({childOf: @_id}).fetch()
     console.log array
     total = 0
-    for transfers, i in array
-      total += array[i].mangos
+    for actions, i in array
+      total += array[i].time
+      console.log total
+    return total.toFixed(2)
+  mangosReceived: ->
+    array = Actions.find({childOf: @_id}).fetch()
+    console.log array
+    total = 0
+    for actions, i in array
+      total += array[i].mangosReceived
+      console.log total
+    return total.toFixed(2)
+  mangosWanted: ->
+    array = Actions.find({childOf: @_id}).fetch()
+    console.log array
+    total = 0
+    for actions, i in array
+      total += array[i].mangosWanted
+      console.log total
+    return total.toFixed(2)
+  mangosReceivedExtra: ->
+    array = Actions.find({childOf: @_id}).fetch()
+    console.log array
+    total = 0
+    for actions, i in array
+      total += array[i].mangosReceivedExtra
       console.log total
     return total.toFixed(2)
 
