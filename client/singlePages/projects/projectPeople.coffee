@@ -1,4 +1,4 @@
-Template.subPeople.helpers
+Template.projectPeople.helpers
   shares: ->
     Shares.find {childOf: @_id}
   createdBy: ->

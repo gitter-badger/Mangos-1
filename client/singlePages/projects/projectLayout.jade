@@ -1,4 +1,4 @@
-template(name='singleProject')
+template(name='projectLayout')
   .ui.padded.grid.stackable
     .three.wide.column(style="border-right: solid 1px lightgrey;padding: 1.5em")
       h3.ui.header
@@ -29,8 +29,8 @@ template(name='singleProject')
       .ui.attached.tab(data-tab="transactions")
         +projectTransactions
       .ui.attached.tab(data-tab="actions")
-        +subActions
+        +projectActions
       .ui.attached.tab(data-tab="people")
-        +subPeople
+        +projectPeople
       .ui.attached.tab(data-tab="messages")
         +subMessages

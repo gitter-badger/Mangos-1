@@ -1,4 +1,4 @@
-Template.singleProject.helpers
+Template.projectLayout.helpers
   maintainer: ->
     Meteor.users.findOne(@createdBy)
   peopleCount: ->
@@ -10,7 +10,7 @@ Template.singleProject.helpers
   messageCount: ->
     Messages.find({childOf: @_id}).count()
 
-Template.singleProject.onRendered ->
+Template.projectLayout.onRendered ->
   @$('textarea').autosize()
   @$(".menu .item").tab()
   $('.payProject').validate
@@ -28,7 +28,7 @@ Template.singleProject.onRendered ->
       amount:
         min: "You are cheeky"
 
-Template.singleProject.events
+Template.projectLayout.events
   'submit .payProject': (event) ->
     event.preventDefault()
     amount = event.target.amount.value

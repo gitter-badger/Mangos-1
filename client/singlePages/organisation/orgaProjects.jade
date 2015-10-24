@@ -18,10 +18,10 @@ template(name="orgaProjects")
           th Project
           th Contributors
           th Min
+          th Mangos wanted
           th Mangos received
-          th Transactions
+          th Mangos extra
           th Actions
-          th Messages
 
       tbody
       each projects
@@ -29,13 +29,14 @@ template(name="orgaProjects")
           td
             h4.ui.image.header
               img.ui.mini.rounded.image(src="#{createdBy.profile.picture}")
-              a(href="{{pathFor 'singleProject'}}")
+              a(href="{{pathFor 'projectLayout'}}")
                 .content
                   | #{name}
                   .sub.header #{createdBy.username}
           td #{peopleCount}
           td #{totalTime}
-          td #{totalMangos}
-          td #{transactionsCount}
+          td #{mangosWanted}
+          td #{mangosReceived}
+          td #{mangosReceivedExtra}
           td #{actionsCount}
-          td #{messageCount}
+

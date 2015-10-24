@@ -1,4 +1,4 @@
-Template.subActions.helpers
+Template.projectActions.helpers
   actions: ->
     Actions.find {childOf: @_id},
       sort:
@@ -12,7 +12,7 @@ Template.subActions.helpers
   mangosReceivedExtra: ->
     @mangosReceivedExtra.toFixed(2)
 
-Template.subActions.onRendered ->
+Template.projectActions.onRendered ->
   $('.addAction').validate
     rules:
       min:
@@ -30,7 +30,7 @@ Template.subActions.onRendered ->
         min: "You are cheeky"
 
 
-Template.subActions.events
+Template.projectActions.events
   'submit .addAction': (event) ->
     event.preventDefault()
     name = event.target.name.value

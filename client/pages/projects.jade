@@ -26,7 +26,7 @@ template(name='projects')
           td
             h4.ui.image.header
               img.ui.mini.rounded.image(src="#{createdBy.profile.picture}")
-              a(href="{{pathFor 'singleProject'}}")
+              a(href="{{pathFor 'projectLayout'}}")
                 .content
                   | #{name}
                   .sub.header #{createdBy.username}
