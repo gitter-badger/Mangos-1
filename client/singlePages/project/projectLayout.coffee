@@ -9,9 +9,10 @@ Template.projectLayout.helpers
     Actions.find({childOf: @_id}).count()
   messageCount: ->
     Messages.find({childOf: @_id}).count()
-
+  editCount: ->
+    History.find({variationOf: @_id}).count()
 Template.projectLayout.onRendered ->
-  @$('textarea').autosize()
+  @$("textarea").autosize()
   @$(".menu .item").tab()
   $('.payProject').validate
     rules:

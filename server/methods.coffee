@@ -31,7 +31,7 @@ Meteor.methods
           banner: "/banner.png"
           name: name
           totalTime: 1
-          description: "To edit your project description just select this text and edit, it will be autosaved. If you wish to see old versions, look at the history tab."
+          description: "To edit your project description just double click this text and edit, it will be autosaved. If you wish to see old versions, look in the history tab."
       History.insert {
         createdBy: Meteor.userId()
         createdAt: new Date()
@@ -46,7 +46,7 @@ Meteor.methods
       Actions.insert
         createdAt: new Date()
         createdBy: Meteor.userId()
-        name: "Created project"
+        name: "Created " + name
         time: 1
         factor: factor
         mangosWanted: mangosWanted

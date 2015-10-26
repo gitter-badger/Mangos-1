@@ -1,6 +1,6 @@
 Template.projectHistory.helpers
   history: ->
-    History.find {versionOf: @_id},
+    History.find {variationOf: @_id},
       sort:
         createdAt: -1
   maintainer: ->

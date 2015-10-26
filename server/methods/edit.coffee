@@ -6,7 +6,7 @@ Meteor.methods
         createdBy: Meteor.userId()
         createdAt: new Date()
         collection: "Projects"
-        versionOf: projectId
+        variationOf: projectId
         action: "update"
         field: "description"
         value: content

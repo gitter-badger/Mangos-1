@@ -51,17 +51,20 @@ Template.projectOverview.helpers
     Actions.findOne @action
   shares: ->
     Shares.find {childOf: @_id}
-  words: ->
-    Words.find()
+  edit: ->
+   Session.get "edit"
 
 Template.projectOverview.onRendered ->
-  @$('textarea').autogrow()
+  $('textarea').autosize()
+  Session.set "edit", "none"
 
 Template.projectOverview.events
-  'change .edit': (event, template) ->
+  'blur .edit': (event, template) ->
     event.preventDefault()
     content = $(event.target).val()
     projectId = @_id
     createdBy = @createdBy
+    Session.set "edit", "none"
     Meteor.call 'editDescription', projectId, content, createdBy
-
+  'dblclick .edit': (event) ->
+    Session.set "edit", "block"

@@ -9,7 +9,6 @@ Template.orgaLayout.helpers
     Messages.find({childOf: @_id}).count()
 
 Template.orgaLayout.onRendered ->
-  @$('textarea').autosize()
   @$(".menu .item").tab()
   $('.payProject').validate
     rules:
