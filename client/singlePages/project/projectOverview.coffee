@@ -65,6 +65,6 @@ Template.projectOverview.events
     projectId = @_id
     createdBy = @createdBy
     Session.set "edit", "none"
-    Meteor.call 'editDescription', projectId, content, createdBy
+    Meteor.call 'editProjectDescription', projectId, content, createdBy
   'dblclick .edit': (event) ->
     Session.set "edit", "block"

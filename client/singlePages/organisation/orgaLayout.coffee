@@ -3,6 +3,8 @@ Template.orgaLayout.helpers
     Meteor.users.findOne @createdBy
   transactionCount: ->
     Transactions.find({receiver: @_id}).count()
+  editCount: ->
+    History.find({variationOf: @_id}).count()
   projectCount: ->
     Projects.find({childOf: @_id}).count()
   messageCount: ->

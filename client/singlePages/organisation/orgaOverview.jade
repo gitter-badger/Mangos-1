@@ -1,6 +1,7 @@
 template(name="orgaOverview")
   img.ui.image.fluid(src="#{banner}")
-  h3(style="font-weight: 300; margin-top: 0.5em; padding: 0.5em 2em") #{description}
+  h3(style="font-weight: 300; margin-top: 0.5em; padding: 0.5em 2em").edit #{description}
+    textarea(rows="2" style="display:#{edit}") #{description}
   .ui.divider
   .ui.tiny.statistics(style="padding: 0.5em 2em")
     .statistic

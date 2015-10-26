@@ -39,14 +39,6 @@ Template.orgaProjects.helpers
       total += array[i].mangosWanted
       console.log total
     return total.toFixed(2)
-  mangosReceivedExtra: ->
-    array = Actions.find({childOf: @_id}).fetch()
-    console.log array
-    total = 0
-    for actions, i in array
-      total += array[i].mangosReceivedExtra
-      console.log total
-    return total.toFixed(2)
 
 
 
@@ -57,15 +49,5 @@ Template.orgaProjects.onRendered ->
       $('.dropdown').dropdown('restore default')
 
 Template.orgaProjects.events
-  "submit .addProject": (event) ->
-    event.preventDefault()
-    projectId = event.target.name.value
-    alert projectId.name
-    orgaId = @_id
-    ###Meteor.call 'addProjectToOrga', projectId
-    Session.set 'ProjectId', null
-    event.target.name.value = null
-    return###
-
-
-
+  "click .giveWanted": (event) ->
+    alert "clicked"

@@ -18,17 +18,22 @@ template(name='orgaLayout')
       .ui.divider
       .ui.vertical.fluid.secondary.menu
         a.active.item(data-tab="overview") Overview
+        a.item(data-tab="messages") Messages (#{messageCount})
         a.item(data-tab="projects") Projects (#{projectCount})
         a.item(data-tab="transactions") Transactions (#{transactionCount})
-        a.item(data-tab="messages") Messages (#{messageCount})
+        a.item(data-tab="history") History (#{editCount})
+
 
     .thirteen.wide.column.streched(style="padding: 0")
       .ui.active.attached.tab(data-tab="overview")
         +orgaOverview
+      .ui.attached.tab(data-tab="messages")
+        +subMessages
       .ui.attached.tab(data-tab="projects")
         +orgaProjects
       .ui.attached.tab(data-tab="transactions")
         +orgaTransactions
-      .ui.attached.tab(data-tab="messages")
-        +subMessages
+      .ui.attached.tab(data-tab="history")
+        +orgaHistory
+
 
