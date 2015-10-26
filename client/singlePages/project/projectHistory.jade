@@ -1,0 +1,14 @@
+template(name="projectHistory")
+  #main
+    .ui.feed
+      each history
+        .event
+          .label
+            a(href="/people/#{maintainer._id}")
+              img(src='#{maintainer.profile.picture}')
+          .content
+            .date #{createdAt}
+            .summary
+              a(href="/project/#{maintainer._id}") #{maintainer.username}
+              | #{action}d project #{field}
+            .exta.text #{value}

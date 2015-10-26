@@ -42,5 +42,7 @@ Template.home.helpers
     Projects.findOne(@childOf)
   orga: ->
     Organisations.findOne(@childOf)
+  action: ->
+    Actions.findOne(@childOf)
 
 

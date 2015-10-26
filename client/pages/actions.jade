@@ -15,7 +15,7 @@ template(name='actions')
           td
             h4.ui.image.header
               img.ui.mini.rounded.image(src="#{createdBy.profile.picture}")
-              .content
+              a(href="/actions/#{_id}").content
                 | #{name}
                 .sub.header
                   | #{createdBy.username}

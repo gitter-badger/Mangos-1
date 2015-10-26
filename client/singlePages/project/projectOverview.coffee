@@ -37,7 +37,6 @@ Template.projectOverview.helpers
       total += array[i].time
       console.log total
     return total
-
   transactions: ->
     Transactions.find {receiver: @_id},
       sort:
@@ -52,4 +51,17 @@ Template.projectOverview.helpers
     Actions.findOne @action
   shares: ->
     Shares.find {childOf: @_id}
+  words: ->
+    Words.find()
+
+Template.projectOverview.onRendered ->
+  @$('textarea').autogrow()
+
+Template.projectOverview.events
+  'change .edit': (event, template) ->
+    event.preventDefault()
+    content = $(event.target).val()
+    projectId = @_id
+    createdBy = @createdBy
+    Meteor.call 'editDescription', projectId, content, createdBy
 

@@ -1,33 +1,22 @@
-template(name="projectOverview")
-  .ui.ten.cards(style="padding: 1em 2em 0.5em 2em")
-    each shares
-      a(href="/people/#{createdBy._id}").card
-        if createdBy.profile.picture
-          .image
-            img(src="#{createdBy.profile.picture}")
-        else
-          .image
-            img(src="/card.png")
-
-  .ui.divider
-  h3(style="font-weight: 300; margin-top: 0.5em; padding: 0.5em 2em") #{description}
+template(name="actionOverview")
+  h3(style="font-weight: 300; margin-top: 0.5em; padding: 0.5em 2em") #{name}
 
   .ui.divider
   .ui.tiny.statistics(style="padding: 0.5em 2em")
     .statistic
-      .value #{peopleCount}
-      .label Contributors
-    .statistic
-      .value #{totalTime}
+      .value #{time}
       .label Min invested
     .statistic
-      .value #{totalMangosWanted}
+      .value #{factor}
+      .label Factor
+    .statistic
+      .value #{mangosWanted}
       .label Mangos wanted
     .statistic
-      .value #{totalMangosReceived}
+      .value #{mangosReceived}
       .label Mangos received
     .statistic
-      .value #{totalMangosExtra}
+      .value #{mangosReceivedExtra}
       .label Mangos Extra
 
   .ui.divider

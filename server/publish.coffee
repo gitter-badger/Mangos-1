@@ -22,3 +22,9 @@ Meteor.publish 'Messages', ->
 #Publish all Organisations
 Meteor.publish 'Organisations', ->
   Organisations.find()
+#Publish all History
+Meteor.publish 'History', ->
+  History.find()
+#Publish all Words
+Meteor.publish 'Words', ->
+  Words.find()

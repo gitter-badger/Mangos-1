@@ -1,25 +1,29 @@
 Router.configure layoutTemplate: 'layout'
 Router.map ->
-  @route 'people', path: '/people'
   @route 'register', path: '/register'
   @route 'login', path: '/login'
   @route 'home', path: '/'
-  @route 'actions', path: '/actions'
   @route 'verifications', path: '/verifications'
+
+  @route 'people', path: '/people'
   @route 'singlePerson',
     path: '/people/:_id'
     data: ->
       Meteor.users.findOne @params._id
+
   @route 'transactions', path: '/transactions'
   @route 'projects', path: '/projects'
   @route 'projectLayout',
     path: '/projects/:_id'
     data: ->
       Projects.findOne @params._id
-  @route 'singleAction',
+
+  @route 'actions', path: '/actions'
+  @route 'actionLayout',
     path: '/actions/:_id'
     data: ->
       Actions.findOne @params._id
+
   @route 'organisations', path: '/organisations'
   @route 'orgaLayout',
     path: '/organisations/:_id'

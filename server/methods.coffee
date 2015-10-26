@@ -31,7 +31,16 @@ Meteor.methods
           banner: "/banner.png"
           name: name
           totalTime: 1
-          description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ta."
+          description: "To edit your project description just select this text and edit, it will be autosaved. If you wish to see old versions, look at the history tab."
+      History.insert {
+        createdBy: Meteor.userId()
+        createdAt: new Date()
+        collection: "Projects"
+        action: "create"
+        field: "name"
+        value: name
+        versionOf: projectId
+      }
       factor = 100
       mangosWanted = (1 / 60 * factor)
       Actions.insert

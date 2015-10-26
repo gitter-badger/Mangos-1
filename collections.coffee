@@ -5,3 +5,5 @@
 @Shares = new Mongo.Collection 'shares'
 @Messages = new Mongo.Collection 'messages'
 @Organisations = new Mongo.Collection 'organisations'
+@History = new Mongo.Collection 'history'
+@Words = new Mongo.Collection 'words'
