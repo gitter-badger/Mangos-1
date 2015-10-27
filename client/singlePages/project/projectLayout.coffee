@@ -11,33 +11,62 @@ Template.projectLayout.helpers
     Messages.find({childOf: @_id}).count()
   editCount: ->
     History.find({variationOf: @_id}).count()
+
 Template.projectLayout.onRendered ->
   @$("textarea").autosize()
   @$(".menu .item").tab()
-  $('.payProject').validate
-    rules:
+  @$('.give').form
+    on: 'change'
+    inline: true
+    fields:
       amount:
-        required: true
-        min: 0
-        max: (event) ->
-          Meteor.user().mangos
-        number: true
+        identifier: 'amount'
+        rules: [
+          {
+            type: 'empty'
+            prompt: 'please enter a value'
+          }
+          {
+            type: 'maxMangos'
+            prompt: "You don't have so many Mangos"
+          }
+          {
+            type: 'minMangos'
+            prompt: 'Come on, minimum 1 Mango'
+          }
+        ]
       message:
-        minlength: 1
-        maxlength: 120
-    messages:
-      amount:
-        min: "You are cheeky"
+        identifier: 'message'
+        optional: true
+        rules: [
+          {
+            type   : 'maxLength[120]',
+            prompt : 'Please enter at most 120 characters'
+          }
+          {
+            type   : 'minLength[3]',
+            prompt : 'Please enter at least 3 characters'
+          }
+        ]
+
 
 Template.projectLayout.events
-  'submit .payProject': (event) ->
-    event.preventDefault()
-    amount = event.target.amount.value
-    message = event.target.message.value
-    projectId = @._id
-    Meteor.call 'payProject', projectId, amount, message
-    event.target.message.value = null
-    event.target.amount.value = null
-    return
-
+  'click .openModal': (event, template) ->
+    self = this
+    $('.modal').modal(
+      autofocus: true
+      allowMultiple: true
+      onHide: ->
+        $('.give').form('reset')
+        $('.give').form('clear')
+        $('.give').removeClass('error')
+      onApprove: ->
+        if $('.give').form('validate form')
+          amount = $('.give').form('get value', 'amount')
+          message = $('.give').form('get value', 'message')
+          projectId = self._id
+          Meteor.call 'payProject', projectId, amount, message
+        else
+          false
+    ).modal 'show'
 
