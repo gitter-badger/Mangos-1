@@ -11,10 +11,18 @@ Template.projectLayout.helpers
     Messages.find({childOf: @_id}).count()
   editCount: ->
     History.find({variationOf: @_id}).count()
+  user: ->
+    Meteor.users.findOne Meteor.userId
+  orgas: ->
+    Organisations.find()
+  love: ->
+    Session.get "love"
 
 Template.projectLayout.onRendered ->
   @$("textarea").autosize()
   @$(".menu .item").tab()
+  @$(".dropdown").dropdown()
+  @$(".give").form('set value', 'love', '25')
   @$('.give').form
     on: 'change'
     inline: true
@@ -33,6 +41,14 @@ Template.projectLayout.onRendered ->
           {
             type: 'minMangos'
             prompt: 'Come on, minimum 1 Mango'
+          }
+        ]
+      senderAccount:
+        identifier: 'senderAccount'
+        rules: [
+          {
+            type: 'empty'
+            prompt: 'please choose your account'
           }
         ]
       message:
@@ -56,7 +72,7 @@ Template.projectLayout.events
     $('.modal').modal(
       autofocus: true
       allowMultiple: true
-      onHide: ->
+      onHidden: ->
         $('.give').form('reset')
         $('.give').form('clear')
         $('.give').removeClass('error')
@@ -64,8 +80,9 @@ Template.projectLayout.events
         if $('.give').form('validate form')
           amount = $('.give').form('get value', 'amount')
           message = $('.give').form('get value', 'message')
+          love = $('.give').form('get value', 'love')
           projectId = self._id
-          Meteor.call 'payProject', projectId, amount, message
+          Meteor.call 'payProject', projectId, amount, love, message
         else
           false
     ).modal 'show'

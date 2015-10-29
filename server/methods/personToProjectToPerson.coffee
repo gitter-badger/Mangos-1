@@ -1,7 +1,36 @@
 Meteor.methods
 #Transfer mangos to project and distribute according to shares to project members
-  payProject: (projectId, amount, message) ->
+  payProject: (projectId, amount, love, message) ->
     if (Meteor.user().verified and amount <= Meteor.user().mangos)
+
+      #---------  MangoLove Transaction to CO | OPEN -----------#
+
+      #Calculate the mangolove amount
+      mangoLove = amount * love
+      orgaId = Organisations.findOne { name: "CO | OPEN" }
+      console.log mangoLove + " " + orgaId._id + " " + orgaId.name
+      #Remove the mangoLove amount from the Senders Account
+      Meteor.users.update Meteor.userId(),
+        $inc:
+          mangos: -mangoLove
+
+      #Add the mangoLove amount to the organisation account
+      Organisations.update orgaId,
+        $inc:
+          mangos: +mangoLove
+
+      #Add the mangoLove transaction to the Transactions Collection for History
+      Transactions.insert
+        createdAt: new Date()
+        createdBy: Meteor.userId()
+        type: "personToOrganisation"
+        mangos: +mangoLove
+        sender: Meteor.userId()
+        receiver: orgaId._id
+        message: "MangoLove"
+
+      #---------  Transaction to Project -----------#
+
       #Remove the Transaction amount from the Senders Account
       Meteor.users.update Meteor.userId(),
         $inc:
