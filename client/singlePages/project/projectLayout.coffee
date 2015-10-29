@@ -15,14 +15,11 @@ Template.projectLayout.helpers
     Meteor.users.findOne Meteor.userId
   orgas: ->
     Organisations.find()
-  love: ->
-    Session.get "love"
 
 Template.projectLayout.onRendered ->
   @$("textarea").autosize()
   @$(".menu .item").tab()
   @$(".dropdown").dropdown()
-  @$(".give").form('set value', 'love', '25')
   @$('.give').form
     on: 'change'
     inline: true

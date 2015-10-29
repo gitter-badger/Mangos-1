@@ -19,11 +19,15 @@ template(name="orgaOverview")
     each transactions
       .event
         .label
-          a(href="/people/#{sender._id}")
-            img(src='#{sender.profile.picture}')
+          a(href="/people/#{createdBy._id}")
+            img(src='#{createdBy.profile.picture}')
         .content
           .date #{createdAt}
           .summary
-            a(href="/people/#{sender._id}") #{sender.username}
-            | has given #{mangos} Mangos
+            a(href="/people/#{createdBy._id}") #{createdBy.username}
+            if organisationToProject
+              | transfered #{mangos} Mangos from #{senderOrga.name} to
+              a(href="/projects/#{receiverProject._id}") #{receiverProject.name}
+            else
+              | gave #{mangos} Mangos to #{receiverOrga.name}
           .exta.text #{message}

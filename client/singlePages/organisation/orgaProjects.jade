@@ -1,7 +1,7 @@
 template(name="orgaProjects")
   #main
-    | #{id}
-    .ui.search.fluid.selection.dropdown
+    | #{orgaId}
+    .ui.search.fluid.selection.dropdown.addProjectToOrga
       input(type='hidden', name='project').addProject
       i.dropdown.icon
       .default.text Add project to this Organisation
@@ -20,6 +20,7 @@ template(name="orgaProjects")
           th Min
           th Mangos wanted
           th Mangos received
+          th Give Mangos
 
       tbody
       each projects
@@ -35,4 +36,43 @@ template(name="orgaProjects")
           td #{totalTime}
           td #{mangosWanted}
           td #{mangosReceived}
+          td
+            button.ui.tiny.button.openModal Give Mangos
 
+  .ui.small.modal
+    i.close.icon
+    .header
+      i.heart.icon
+      | Give Mangos to #{projectName}
+    .content
+      .description
+        .header Choose your amount of Mangos you wish to transfer
+          .sub.header If you enjoy our work we offer you with the CO | OPEN Platform, show some love and give us encouragement.
+        br
+      form.ui.form.fluid.give
+        .two.fields
+          .field
+            label Mango amount
+            .ui.massive.transparent.input
+              input(type="number", name="amount", placeholder="amount")
+          .field
+            label Show appreciation
+            .ui.inline.massive.search.dropdown.mangosLove
+              input(type="hidden" name="mangosLove")
+              .text(style="font-weight: 300") Choose %
+              i.dropdown.icon
+              .menu
+                .item(data-value="0") 0% no love
+                .item(data-value="0.001") 0,1%
+                .item(data-value="0.002") 0.2%
+                .item(data-value="0.005") 0,5%
+                .item(data-value="0.01") 1%
+                .item(data-value="0.02") 2%
+                .item(data-value="0.05") 5%
+                .item(data-value="0.1") 10%
+        .field
+          label Message
+          .ui.big.transparent.input
+            textarea(rows="1", name="message", placeholder="optional", style="border: none; padding: 0")
+    .actions
+      .ui.ok.green.button Send now
