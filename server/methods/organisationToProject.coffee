@@ -21,9 +21,9 @@ Meteor.methods
         Transactions.insert
           createdAt: new Date()
           createdBy: Meteor.userId()
-          type: "personToOrganisation"
+          type: "organisationToOrganisation"
           mangos: +mangoLove
-          sender: Meteor.userId()
+          sender: orgaId
           receiver: coOpen._id
           message: "MangoLove"
 

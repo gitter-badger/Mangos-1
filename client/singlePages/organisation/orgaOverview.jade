@@ -26,8 +26,16 @@ template(name="orgaOverview")
           .summary
             a(href="/people/#{createdBy._id}") #{createdBy.username}
             if organisationToProject
-              | transfered #{mangos} Mangos from #{senderOrga.name} to
+              | transfered #{mangos} Mangos from
+              a(href="/organisations/#{senderOrga._id}") #{senderOrga.name}
+              | to
               a(href="/projects/#{receiverProject._id}") #{receiverProject.name}
+            else if organisationToOrganisation
+              | sended #{mangos} Mangos from
+              a(href="/organisations/#{senderOrga._id}") #{senderOrga.name}
+              | to
+              a(href="/organisations/#{receiverOrga._id}") #{receiverOrga.name}
             else
-              | gave #{mangos} Mangos to #{receiverOrga.name}
+              | gave #{mangos} Mangos to
+              a(href="/organisations/#{receiverOrga._id}") #{receiverOrga.name}
           .exta.text #{message}

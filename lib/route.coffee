@@ -6,7 +6,7 @@ Router.map ->
   @route 'verifications', path: '/verifications'
 
   @route 'people', path: '/people'
-  @route 'singlePerson',
+  @route 'personLayout',
     path: '/people/:_id'
     data: ->
       Meteor.users.findOne @params._id

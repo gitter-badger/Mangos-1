@@ -1,4 +1,4 @@
-Template.transactionsPerson.helpers
+Template.personTransactions.helpers
   transactions: ->
     Transactions.find { $or: [
       { sender: @_id }
@@ -12,3 +12,7 @@ Template.transactionsPerson.helpers
     Meteor.users.findOne @receiver
   receiverOrga: ->
     Organisations.findOne @receiver
+  senderOrga: ->
+    Organisations.findOne @sender
+  senderProject: ->
+    Projects.findOne @sender

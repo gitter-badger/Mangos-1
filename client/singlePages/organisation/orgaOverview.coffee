@@ -29,6 +29,9 @@ Template.orgaOverview.helpers
   organisationToProject: ->
     if @type is "organisationToProject"
       return true
+  organisationToOrganisation: ->
+    if @type is "organisationToOrganisation"
+      return true
 
 Template.orgaOverview.onRendered ->
   $('textarea').autosize()

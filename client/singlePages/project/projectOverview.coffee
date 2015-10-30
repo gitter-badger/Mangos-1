@@ -41,6 +41,17 @@ Template.projectOverview.helpers
     Transactions.find {receiver: @_id},
       sort:
         createdAt: -1
+
+  receiverProject: ->
+    Projects.findOne(@receiver)
+  senderOrga: ->
+    Organisations.findOne(@sender)
+
+  organisationToProject: ->
+    if @type is "organisationToProject"
+      return true
+
+
   receiver: ->
     Meteor.users.findOne(@receiver)
   sender: ->

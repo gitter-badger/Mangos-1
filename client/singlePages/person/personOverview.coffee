@@ -1,4 +1,4 @@
-Template.overviewPerson.helpers
+Template.personOverview.helpers
   mangos: ->
     @mangos.toFixed(3)
   totalTime: ->

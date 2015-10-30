@@ -1,4 +1,4 @@
-template(name='singlePerson')
+template(name='personLayout')
   .ui.padded.grid.stackable
     .three.wide.column(style="border-right: solid 1px lightgrey;padding: 1.5em")
       .ui.fluid.card
@@ -20,9 +20,9 @@ template(name='singlePerson')
 
     .thirteen.wide.column.streched(style="padding: 0em")
       .ui.active.attached.tab(data-tab="overview")
-        +overviewPerson
+        +personOverview
       .ui.attached.tab(data-tab="transactions")
-        +transactionsPerson
+        +personTransactions
       //.ui.attached.tab(data-tab="actions")
         +subActions
       //.ui.attached.tab(data-tab="messages")

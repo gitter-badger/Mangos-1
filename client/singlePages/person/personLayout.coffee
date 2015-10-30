@@ -1,4 +1,4 @@
-Template.singlePerson.helpers
+Template.personLayout.helpers
   transactions: ->
     Transactions.find(
       $or: [
@@ -14,5 +14,5 @@ Template.singlePerson.helpers
     @years.toFixed(2)
   mangosDestroyed: ->
 
-Template.singlePerson.onRendered ->
+Template.personLayout.onRendered ->
   @$(".menu .item").tab()
