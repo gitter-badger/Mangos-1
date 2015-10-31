@@ -1,4 +1,7 @@
 Template.orgaProjects.helpers
+  orgaMaintainer: ->
+    if Meteor.userId() is @createdBy
+      true
   projects: ->
     Projects.find childOf: @_id
   projectsSelect: ->
@@ -109,7 +112,6 @@ Template.orgaProjects.events
           love = $('.give').form('get value', 'mangosLove')
           projectId = self._id
           orgaId = Session.get "orgaId"
-          alert "orga: " + orgaId + "project: " + projectId + "message: " + message + "love factor: " + love + "amount: " + amount
           Meteor.call 'organisationToProject', orgaId, projectId, amount, love, message
         else
           false

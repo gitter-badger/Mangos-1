@@ -1,7 +1,8 @@
 Meteor.methods
 #Transfer mangos to project and distribute according to shares to project members
   organisationToProject: (orgaId, projectId, amount, love, message) ->
-    if (Meteor.user().verified and amount <= Meteor.user().mangos)
+    orga = Organisations.findOne(orgaId)
+    if (Meteor.user().verified and amount <= orga.mangos and orga.createdBy is Meteor.userId() )
       #---------  MangoLove Transaction to CO | OPEN -----------#
        #Calculate the mangolove amount
       mangoLove = amount * love

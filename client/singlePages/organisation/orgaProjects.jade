@@ -20,7 +20,8 @@ template(name="orgaProjects")
           th Min
           th Mangos wanted
           th Mangos received
-          th Give Mangos
+          if orgaMaintainer
+            th Give Mangos
 
       tbody
       each projects
@@ -36,8 +37,9 @@ template(name="orgaProjects")
           td #{totalTime}
           td #{mangosWanted}
           td #{mangosReceived}
-          td
-            button.ui.tiny.button.openModal Give Mangos
+          if orgaMaintainer
+            td
+              button.ui.tiny.button.openModal Give Mangos
 
   .ui.small.modal
     i.close.icon
