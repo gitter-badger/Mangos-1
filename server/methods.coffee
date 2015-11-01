@@ -14,6 +14,7 @@ Meteor.methods
 
       #Add the Transaction to the Transaction Collection for History
       Transactions.insert
+        collection: "transactions"
         createdAt: new Date()
         createdBy: Meteor.userId()
         mangos: amount
@@ -26,6 +27,7 @@ Meteor.methods
     if (Meteor.user().verified)
       projectId =
         Projects.insert
+          collection: "projects"
           createdAt: new Date()
           createdBy: Meteor.userId()
           banner: "/banner.png"
@@ -33,6 +35,7 @@ Meteor.methods
           totalTime: 1
           description: "To edit your project description just double click this text and edit, it will be autosaved. If you wish to see old versions, look in the history tab."
       History.insert {
+        collection: "history"
         createdBy: Meteor.userId()
         createdAt: new Date()
         collection: "Projects"
@@ -44,6 +47,7 @@ Meteor.methods
       factor = 100
       mangosWanted = (1 / 60 * factor)
       Actions.insert
+        collection: "actions"
         createdAt: new Date()
         createdBy: Meteor.userId()
         name: "Created " + name
@@ -56,6 +60,7 @@ Meteor.methods
         status: "Done"
 
       Shares.insert
+        collection: "shares"
         createdAt: new Date()
         createdBy: Meteor.userId()
         childOf: projectId
@@ -70,6 +75,7 @@ Meteor.methods
     mangosWanted = (min / 60 * factor)
     if (Meteor.user().verified)
       Actions.insert
+        collection: "actions"
         createdAt: new Date()
         createdBy: Meteor.userId()
         name: name
@@ -111,6 +117,7 @@ Meteor.methods
       #Create new share document
       else
         Shares.insert
+          collection: "shares"
           createdAt: new Date()
           createdBy: Meteor.userId()
           childOf: projectId
@@ -130,6 +137,7 @@ Meteor.methods
             verifiedAt: currentAge
         #Add the Verification to the Verifications Collection
         Verifications.insert
+          collection: "verifications"
           createdAt: new Date()
           createdBy: Meteor.userId()
           verifiedPerson: person
@@ -142,6 +150,7 @@ Meteor.methods
   addMessage: (projectId, message) ->
     if (Meteor.user().verified)
       Messages.insert
+        collection: "messages"
         createdAt: new Date()
         createdBy: Meteor.userId()
         message: message
@@ -152,6 +161,7 @@ Meteor.methods
     if (Meteor.user().verified)
       organisationId =
         Organisations.insert
+          collection: "organisations"
           createdAt: new Date()
           createdBy: Meteor.userId()
           banner: "/banner.png"

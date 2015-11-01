@@ -13,6 +13,7 @@ Meteor.methods
 
       #Add the Transaction to the Transactions Collection for History
       Transactions.insert
+        collection: "transactions"
         createdAt: new Date()
         createdBy: Meteor.userId()
         type: "personToOrganisation"

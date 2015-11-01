@@ -18,6 +18,7 @@ Meteor.methods
 
       #Add the mangoLove transaction to the Transactions Collection for History
       Transactions.insert
+        collection: "transactions"
         createdAt: new Date()
         createdBy: Meteor.userId()
         type: "personToOrganisation"
@@ -42,6 +43,7 @@ Meteor.methods
       #Work around for accumulated Transactions
       transactionId =
         Transactions.insert
+          collection: "transactions"
           createdAt: new Date()
           createdBy: Meteor.userId()
           mangos: +amount
@@ -80,6 +82,7 @@ Meteor.methods
 
         #Add the Transaction to the Transactions Collection for History
         Transactions.insert
+          collection: "transactions"
           createdAt: new Date()
           createdBy: Meteor.userId()
           mangos: addMangos + addMangosExtra

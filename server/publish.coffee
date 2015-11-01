@@ -1,6 +1,7 @@
 #Publish all Users
 Meteor.publish 'People', ->
   Meteor.users.find()
+
 #Publish all Transactions
 Meteor.publish 'Transactions', ->
   Transactions.find()
@@ -25,6 +26,3 @@ Meteor.publish 'Organisations', ->
 #Publish all History
 Meteor.publish 'History', ->
   History.find()
-#Publish all Words
-Meteor.publish 'Words', ->
-  Words.find()
