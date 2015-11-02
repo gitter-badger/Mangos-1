@@ -4,10 +4,10 @@ template(name="personOverview")
       .value #{mangos}
       .label Mangos
     .statistic
-      .value #{actionsCount}
+      .value {{getPublishedCount 'actionCount'}}
       .label Actions
     .statistic
-      .value #{messageCount}
+      .value {{getPublishedCount 'messageCount'}}
       .label Messages
     .statistic
       .value #{totalTime}
@@ -21,12 +21,15 @@ template(name="personOverview")
     mangosGenerated
   .ui.divider
   .ui.feed(style="padding: 1em 3em")
-    each personTimeline
+    each actions
       .event
         .label
           a(href="/people/#{createdBy._id}")
             img(src='#{createdBy.profile.picture}')
         .content
           .date #{createdAt}
-          .summary #{name} #{message}|  #{createdBy.username}
+          .summary
+            |#{createdBy.username} worked #{time} mins on the action in
+            a(href="/projects/#{project._id}") #{project.name}
+          .extra.content #{name}
 

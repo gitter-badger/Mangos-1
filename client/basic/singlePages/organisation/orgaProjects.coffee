@@ -42,6 +42,9 @@ Template.orgaProjects.helpers
   projectName: ->
     Session.get "projectName"
 
+Template.orgaProjects.onCreated ->
+  @subscribe 'Projects'
+
 Template.orgaProjects.onRendered ->
   @$('.addProjectToOrga.dropdown').dropdown
     onChange: (value) ->

@@ -1,8 +1,6 @@
 Template.transactions.helpers
   transactions: ->
-    Transactions.find {},
-      sort:
-        createdAt: -1
+    Transactions.find()
   createdAt: ->
     time = new Date(@createdAt).toDateString()
     time.substr 0, time.length - 4
@@ -26,6 +24,9 @@ Template.transactions.helpers
   personToProject: ->
     if @type is "personToProject"
       return true
+
+Template.transactions.onCreated ->
+  @subscribe 'Transactions'
 
 Template.transactions.onRendered ->
   $('#transfer').validate

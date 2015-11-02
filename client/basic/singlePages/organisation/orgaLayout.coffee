@@ -10,6 +10,11 @@ Template.orgaLayout.helpers
   messageCount: ->
     Messages.find({childOf: @_id}).count()
 
+Template.orgaLayout.onCreated ->
+  docId = Template.parentData(0)._id
+  @subscribe "subMessages", docId
+  @subscribe "History", docId
+
 Template.orgaLayout.onRendered ->
   @$(".menu .item").tab()
   $('.payProject').validate

@@ -45,4 +45,6 @@ Template.home.helpers
   action: ->
     Actions.findOne(@childOf)
 
-
+Template.home.onCreated ->
+  @subscribe 'homeMessages'
+  @subscribe 'Organisations'

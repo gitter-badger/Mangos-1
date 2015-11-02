@@ -1,8 +1,6 @@
 Template.actions.helpers
   actions: ->
-    Actions.find {},
-      sort:
-        createdAt: -1
+    Actions.find()
   projects: ->
     Projects.find @childOf
   createdBy: ->
@@ -11,3 +9,6 @@ Template.actions.helpers
     @mangosWanted.toFixed(2)
   mangosReceived: ->
     @mangosReceived.toFixed(2)
+
+Template.actions.onCreated ->
+  @subscribe 'Actions'

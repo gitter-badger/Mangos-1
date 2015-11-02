@@ -44,6 +44,9 @@ Template.projects.helpers
       console.log total
     return total.toFixed(2)
 
+Template.projects.onCreated ->
+  @subscribe 'Projects'
+
 Template.projects.onRendered ->
   $('.addProject').validate
     rules:

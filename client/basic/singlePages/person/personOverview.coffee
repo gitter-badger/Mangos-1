@@ -1,16 +1,11 @@
 Template.personOverview.helpers
-  personTimeline: ->
-    actions = Actions.find().fetch()
-    messages = Messages.find().fetch()
-    transactions = Transactions.find().fetch()
-    docs = actions.concat(messages, transactions)
-    docs.sort (a, b) ->
-      if a.createdAt > b.createdAt
-        return 1
-      if a.createdAt < b.createdAt
-        return -1
-      0
-    return docs
+  actions: ->
+    Actions.find {},
+      sort:
+        createdAt: -1
+
+  project: ->
+    Projects.findOne @childOf
 
   mangos: ->
     @mangos.toFixed(3)
@@ -22,8 +17,6 @@ Template.personOverview.helpers
       total += array[i].totalTime
       console.log total
     return total
-  actionsCount: ->
-    Actions.find({createdBy: @_id}).count()
   messageCount: ->
     Messages.find({createdBy: @_id}).count()
   transactions: ->
@@ -43,15 +36,11 @@ Template.personOverview.helpers
     @mangosGenerated.toFixed(2)
   messages: ->
     Messages.find()
-  actions: ->
-    Actions.find()
   createdBy: ->
-    # We use this helper inside the {{#each posts}} loop, so the context
-    # will be a action object. Thus, we can use this.authorId.
     Meteor.users.findOne @createdBy
 
 Template.personOverview.onCreated ->
-  @subscribe 'personActions'
-  @subscribe 'personMessages'
-  @subscribe 'personTransactions'
-
+  docId = Template.parentData(0)._id
+  @subscribe 'personActions', docId
+  Counts.get 'actionCount'
+  Counts.get 'messageCount'

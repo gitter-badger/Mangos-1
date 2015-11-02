@@ -1,4 +1,6 @@
-Router.configure layoutTemplate: 'layout'
+Router.configure
+  layoutTemplate: 'layout'
+  loadingTemplate: 'loading'
 Router.map ->
   @route 'register', path: '/register'
   @route 'login', path: '/login'
@@ -8,6 +10,8 @@ Router.map ->
   @route 'people', path: '/people'
   @route 'personLayout',
     path: '/people/:_id'
+    waitOn: ->
+      Meteor.subscribe 'personActions', @params._id
     data: ->
       Meteor.users.findOne @params._id
 
@@ -33,6 +37,8 @@ Router.map ->
   @route 'projects', path: '/projects'
   @route 'projectLayout',
     path: '/projects/:_id'
+    waitOn: ->
+      Meteor.subscribe 'Projects', @params._id
     data: ->
       Projects.findOne @params._id
 
@@ -45,6 +51,8 @@ Router.map ->
   @route 'organisations', path: '/organisations'
   @route 'orgaLayout',
     path: '/organisations/:_id'
+    waitOn: ->
+      Meteor.subscribe 'Organisations', @params._id
     data: ->
       Organisations.findOne @params._id
 

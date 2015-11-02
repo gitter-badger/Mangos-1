@@ -33,6 +33,9 @@ Template.people.helpers
     if(@verifyLevel > 0 and Meteor.userId() != @._id)
       return true
 
+Template.people.onCreated ->
+  @subscribe 'People'
+
 Template.people.events
   'click .verify': ->
     Meteor.call 'verifyPerson' , @._id
