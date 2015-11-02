@@ -1,7 +1,4 @@
 Template.orgaProjects.helpers
-  orgaMaintainer: ->
-    if Meteor.userId() is @createdBy
-      true
   projects: ->
     Projects.find childOf: @_id
   projectsSelect: ->
