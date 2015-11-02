@@ -26,3 +26,12 @@ Meteor.publish 'Organisations', ->
 #Publish all History
 Meteor.publish 'History', ->
   History.find()
+
+Meteor.publish 'Elements', ->
+  Elements.find()
+
+Meteor.publish 'Relations', ->
+  Relations.find()
+
+Meteor.publish 'Events', ->
+  Events.find()

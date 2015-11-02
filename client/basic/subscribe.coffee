@@ -8,3 +8,7 @@ Meteor.subscribe 'Messages'
 Meteor.subscribe 'Organisations'
 Meteor.subscribe 'History'
 Meteor.subscribe 'Words'
+
+Meteor.subscribe 'Relations'
+Meteor.subscribe 'Elements'
+Meteor.subscribe 'Events'
