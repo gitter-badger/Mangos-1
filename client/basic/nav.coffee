@@ -1,6 +1,7 @@
 Template.nav.helpers
   username: ->
     Meteor.user().username
+
 Template.registerHelper 'currentRouteIs', (route) ->
   Router.current().route.getName() == route
 

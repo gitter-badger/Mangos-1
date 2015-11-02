@@ -6,17 +6,27 @@ template(name='register')
     }
   .ui.three.column.centered.middle.aligned.stackable.grid
     .column
-      .ui.horizontal.divider REGISTER WITH
-      .ui.button.blue.fluid.facebook-login  Facebook
-      .ui.horizontal.divider OR
+      .ui.horizontal.divider REGISTER NOW
       form.ui.form.login
         .field
           .ui.left.icon.input
-            input(type="text", name="username", placeholder="Choose your Name")
+            input(type="email", name="email", placeholder="Email")
+            i.mail.icon
+        .field
+          .ui.left.icon.input
+            input(type="text", name="firstname", placeholder="Firstname")
+            i.user.icon
+        .field
+          .ui.left.icon.input
+            input(type="text", name="lastname", placeholder="Lastname")
             i.user.icon
         .field
           .ui.left.icon.input
             input(type='password', name='password', placeholder="Choose your Password")
+            i.lock.icon
+        .field
+          .ui.left.icon.input
+            input(type='password', name='passwordAgain', placeholder="Repeat Password")
             i.lock.icon
         button.ui.button.fluid(type='submit') Register
 

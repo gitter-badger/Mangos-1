@@ -2,18 +2,16 @@ template(name='login')
   style.
     body {
       background-color: #fafafa;
-      padding-top: 10%;
+      padding-top: 20%;
     }
   .ui.three.column.centered.middle.aligned.stackable.grid
     .column
-      .ui.horizontal.divider LOGIN WITH
-      button.ui.button.fluid.facebook.facebook-login Facebook
-      .ui.horizontal.divider OR
+      .ui.horizontal.divider LOGIN
       form.ui.form.login
         .field
           .ui.left.icon.input
-            input(type="text", name="username", placeholder="username")
-            i.user.icon
+            input(type="email", name="email", placeholder="email")
+            i.mail.icon
         .field
           .ui.left.icon.input
             input(type='password', name='password', placeholder="password")
@@ -21,4 +19,4 @@ template(name='login')
         button.ui.button.fluid(type='submit') Login
 
       .ui.divider.horizontal
-        a(href="/register") REGISTER NOW
+        a(href="/register") OR REGISTER NOW
