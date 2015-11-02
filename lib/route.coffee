@@ -11,6 +11,24 @@ Router.map ->
     data: ->
       Meteor.users.findOne @params._id
 
+  @route 'elements', path: '/elements'
+  @route 'singleElement',
+    path: '/elements/:_id'
+    data: ->
+      Elements.findOne @params._id
+
+  @route 'relations', path: '/relations'
+  @route 'singleRelation',
+    path: '/relations/:_id'
+    data: ->
+      Relations.findOne @params._id
+
+  @route 'events', path: '/events'
+  @route 'singleEvent',
+    path: '/events/:_id'
+    data: ->
+      Events.findOne @params._id
+
   @route 'transactions', path: '/transactions'
   @route 'projects', path: '/projects'
   @route 'projectLayout',
