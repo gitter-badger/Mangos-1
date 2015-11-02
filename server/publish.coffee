@@ -33,7 +33,8 @@ Meteor.publish 'Actions', ->
 #Publish all Shares
 Meteor.publish 'Shares', ->
   Shares.find()
-###
+
+
 Meteor.publish 'Elements', ->
   Elements.find()
 
@@ -42,4 +43,4 @@ Meteor.publish 'Relations', ->
 
 Meteor.publish 'Events', ->
   Events.find()
-  ###
+

@@ -1,0 +1,14 @@
+template(name='singleElement')
+  | #{docId}
+  #main
+    form.ui.form.addElement
+      .three.fields
+        .field.input
+          input(type="text" name="x2" placeholder="property")
+        .field.input
+          input(type="text" name="x3" placeholder="value")
+        .field.fluid
+          button.ui.button(type="submit") Add
+
+    each elements
+      li #{x1} #{x2} #{x3}

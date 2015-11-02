@@ -1,37 +1,17 @@
 template(name='elements')
   #main
     h2 all elements
-    form.ui.form.addStringElement
-      .four.fields
-        .field.ui.input
-          input(type="text" name="contains" placeholder="contains")
-        .field.ui.input
-          input(type="text" name="elementType" placeholder="elementType")
-        .field.ui.input
-          input(type="text" name="expectedType" placeholder="expectedType")
-        .field.ui.input
-          input(type="text" name="utilizedWith" placeholder="utilizedWith")
-
-      .field.ui.input
-        input(type="text" name="definition" placeholder="definition")
-      .field
-        button.ui.button(type="submit") Submit
-
     .ui.very.basic.collapsing.celled.table
       thead
         tr
+          th id
           th createdBy
-          th elementType
-          th contains
-          th expectedType
-          th utilizedWith
-          th definition
+          th createdAt
       tbody
         each elements
           tr
+           td
+            a(href="/elements/#{_id}") #{_id}
            td #{createdBy}
-           td #{elementType}
-           td #{contains}
-           td #{expectedType}
-           td #{utilizedWith}
-           td #{definition}
+           td #{createdAt}
+
