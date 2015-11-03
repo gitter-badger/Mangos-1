@@ -7,6 +7,9 @@ template(name='elements')
           th id
           th createdBy
           th createdAt
+          th x1
+          th x2
+          th x3
       tbody
         each elements
           tr
@@ -14,4 +17,7 @@ template(name='elements')
             a(href="/elements/#{_id}") #{_id}
            td #{createdBy}
            td #{createdAt}
+           td #{x1.type}:#{x1.value}
+           td #{x2.type}:#{x2.value}
+           td #{x3.type}:#{x3.value}
 

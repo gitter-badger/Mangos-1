@@ -3,34 +3,22 @@ template(name='people')
     table.ui.very.basic.celled.table
       thead
         tr
-          th Profiles (#{peopleCount}) verified (#{peopleVerified})
-          th Mangos (#{mangoCount})
-          th Percent
-          th Age (years)
-          if userVerified
-            th Verify
+          th People
       tbody
-      each users
+      each people
         tr
           td
             h4.ui.image.header
               if profile.picture
                 img.ui.mini.rounded.image(src='#{profile.picture}')
               else
-                img.ui.mini.rounded.image(src='https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png')
+                img.ui.mini.rounded.image(src='/user1.png')
               a(href="{{pathFor 'personLayout'}}")
                 .content
-                  | #{username}
+                  | #{profile.firstname} #{profile.lastname}
                   .sub.header
                     if verified
                       | #{timeTillExpiration} years till expiration
-                    else if allowed
-                      | not verified yet
                     else
-                      | Anonymous | Can not be verified
-          td #{mangos}
-          td #{percent}%
-          td #{years}
-          td
-            if allowed
-              button.ui.mini.button.verify Verify
+                      | Anonymous
+

@@ -1,17 +1,25 @@
-Meteor.publishComposite 'elements', (docId) ->
+Meteor.publish 'Uploads', ->
+  Uploads.find()
+
+Meteor.publish 'People', ->
+  Meteor.users.find()
+
+Meteor.publish 'Elements', ->
+  Elements.find()
+
+
+Meteor.publishComposite 'elementComp', (docId) ->
   find: ->
     # Find all actions by this user
-    Elements.find {createdBy:docId},
+    Elements.find {},
       sort: createdAt: -1
   children: [
     {
-      find: (action) ->
+      find: (element) ->
         # Find action createdBy. Even though we only want to return
         # one record here, we use "find" instead of "findOne"
         # since this function should return a cursor.
-        Meteor.users.find { _id: action.createdBy },
+        Meteor.users.find { _id: element.createdBy },
           limit: 1
-          fields: username: 1
     }
   ]
-

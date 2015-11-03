@@ -1,18 +1,22 @@
 Template.personLayout.helpers
-  transactions: ->
-    Transactions.find(
-      $or: [
-        {sender: @_id}
-        {receiver: @_id}
-      ]
-    )
-  sender: ->
-    Meteor.users.findOne @sender
-  receiver: ->
-    Meteor.users.findOne @receiver
-  age: ->
-    @years.toFixed(2)
-  mangosDestroyed: ->
+  profileImage: ->
+    element = Elements.findOne $and: [
+      {'x1.value': @_id }
+      {'x2.value': 'profileImage'}
+    ]
+    return element.x3.value
+  familyName: ->
+    element = Elements.findOne $and: [
+      {'x1.value': @_id }
+      {'x2.value': 'familyName'}
+    ]
+    return element.x3.value
+  givenName: ->
+    element = Elements.findOne $and: [
+      {'x1.value': @_id }
+      {'x2.value': 'givenName'}
+    ]
+    return element.x3.value
 
 Template.personLayout.onRendered ->
   @$(".menu .item").tab()

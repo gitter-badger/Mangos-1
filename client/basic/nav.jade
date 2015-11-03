@@ -5,5 +5,5 @@ template(name="nav")
     a(href="/elements" class="{{#if currentRouteIs 'elements'}}active{{/if}}").item ELEMENTS
     a(href="/events" class="{{#if currentRouteIs 'events'}}active{{/if}}").item EVENTS
     .right.menu
-      .item #{username}
+      a(href="/people/#{userId}").item #{person.firstname} #{person.lastname}
       a.logout(href="#").item Logout

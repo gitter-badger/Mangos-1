@@ -41,3 +41,5 @@ dburles:collection-helpers
 alethes:pages
 ccorcos:subs-cache
 tmeasday:publish-counts
+tomi:upload-server
+tomi:upload-jquery

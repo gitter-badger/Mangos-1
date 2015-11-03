@@ -1,35 +1,24 @@
 template(name="personOverview")
-  .ui.tiny.statistics(style="padding: 1.5em 2em 0.5em 2em")
-    .statistic
-      .value #{mangos}
-      .label Mangos
-    .statistic
-      .value {{getPublishedCount 'actionCount'}}
-      .label Actions
-    .statistic
-      .value {{getPublishedCount 'messageCount'}}
-      .label Messages
-    .statistic
-      .value #{totalTime}
-      .label Minutes invested
-    .statistic
-      .value #{mangosGenerated}
-      .label Basic Income Received
-    .statistic
-      .value #{mangosDestroyed}
-      .label Basic Income Payed
-    mangosGenerated
-  .ui.divider
-  .ui.feed(style="padding: 1em 3em")
-    each actions
-      .event
-        .label
-          a(href="/people/#{createdBy._id}")
-            img(src='#{createdBy.profile.picture}')
-        .content
-          .date #{createdAt}
-          .summary
-            |#{createdBy.username} worked #{time} mins on the action in
-            a(href="/projects/#{project._id}") #{project.name}
-          .extra.content #{name}
+  #main.ui.very.basic.collapsing.celled.table
+    thead
+      tr
+        th CreatedBy and createdAt
+        th Property
+        th Value
+    tbody
+      each elements
+        tr
+          td
+            h4.ui.image.header
+              img.mini.rounded.image(src="#{profileImage}")
+              .content #{givenName}
+                .sub.header #{createdAt}
+          td
+            h4.ui.header
+              .content #{x2.value}
+                .sub.header #{x2.type}
+          td
+            h4.ui.header
+              .content #{x3.value}
+                .sub.header #{x3.type}
 

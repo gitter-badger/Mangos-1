@@ -2,15 +2,11 @@ template(name='personLayout')
   .ui.padded.grid.stackable
     .three.wide.column(style="border-right: solid 1px lightgrey;padding: 1.5em")
       .ui.fluid.card
-        if profile.picture
-          .image
-            img(src='#{profile.picture}')
-        else
-          .image
-            img(src='/card.png')
+        .image
+          img(src='#{profileImage}')
+
         .content
-          .header #{username}
-          .meta #{age} years old
+          .header #{givenName} #{familyName}
       .ui.vertical.secondary.menu
         a.active.item(data-tab="overview") Overview
 

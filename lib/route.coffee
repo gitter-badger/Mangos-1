@@ -5,13 +5,10 @@ Router.map ->
   @route 'register', path: '/register'
   @route 'login', path: '/login'
   @route 'home', path: '/'
-  @route 'verifications', path: '/verifications'
 
   @route 'people', path: '/people'
   @route 'personLayout',
     path: '/people/:_id'
-    waitOn: ->
-      Meteor.subscribe 'personActions', @params._id
     data: ->
       Meteor.users.findOne @params._id
 
@@ -21,41 +18,11 @@ Router.map ->
     data: ->
       Elements.findOne @params._id
 
-  @route 'relations', path: '/relations'
-  @route 'singleRelation',
-    path: '/relations/:_id'
-    data: ->
-      Relations.findOne @params._id
-
   @route 'events', path: '/events'
   @route 'singleEvent',
     path: '/events/:_id'
     data: ->
       Events.findOne @params._id
-
-  @route 'transactions', path: '/transactions'
-  @route 'projects', path: '/projects'
-  @route 'projectLayout',
-    path: '/projects/:_id'
-    waitOn: ->
-      Meteor.subscribe 'Projects', @params._id
-    data: ->
-      Projects.findOne @params._id
-
-  @route 'actions', path: '/actions'
-  @route 'actionLayout',
-    path: '/actions/:_id'
-    data: ->
-      Actions.findOne @params._id
-
-  @route 'organisations', path: '/organisations'
-  @route 'orgaLayout',
-    path: '/organisations/:_id'
-    waitOn: ->
-      Meteor.subscribe 'Organisations', @params._id
-    data: ->
-      Organisations.findOne @params._id
-
 
 #Redirect User when not Loggedin to the Login template
 Router.onBeforeAction (->
