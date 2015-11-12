@@ -1,0 +1,44 @@
+template(name='objects')
+ #main
+  form.ui.form.addObject
+    .three.fields
+      .seven.wide.field
+        .ui.search.fluid.selection.dropdown.addProperty
+          input(type="hidden", name="property")
+          i.dropdown.icon
+          .default.text Add property
+          .menu
+            each types
+              .item(data-value='#{_id}') #{value}
+
+      .seven.wide.field
+        input(type="text", name="value", placeholder="value")
+      .two.wide.field
+        button.ui.button.fluid(type='submit') Add
+
+  .ui.divider
+  if Template.subscriptionsReady
+    table.ui.very.basic.table
+      thead
+        tr
+          th createdBy
+          th @id
+          th @type
+          th @value
+          th @context
+
+      tbody
+      each objects
+        tr
+          td
+            h4.ui.image.header
+              img.ui.mini.rounded.image(src="#{createdBy.profile.picture}")
+              a(href="{{pathFor 'projectLayout'}}")
+                .content
+                  | #{name}
+                  .sub.header #{createdBy.username}
+          td
+            a(href="/objects/#{_id}") #{_id}
+          td #{type}
+          td #{value}
+          td #{context.type} #{context.value}

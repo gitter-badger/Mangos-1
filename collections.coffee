@@ -7,3 +7,5 @@
 @Organisations = new Mongo.Collection 'organisations'
 @History = new Mongo.Collection 'history'
 @Words = new Mongo.Collection 'words'
+
+@Objects = new Mongo.Collection 'objects'

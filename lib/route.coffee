@@ -11,6 +11,12 @@ Router.map ->
     data: ->
       Meteor.users.findOne @params._id
 
+  @route 'objects', path: '/objects'
+  @route 'objectLayout',
+    path: '/objects/:_id'
+    data: ->
+      Objects.findOne @params._id
+
   @route 'transactions', path: '/transactions'
   @route 'projects', path: '/projects'
   @route 'projectLayout',
