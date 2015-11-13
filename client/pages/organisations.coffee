@@ -10,6 +10,9 @@ Template.organisations.helpers
   mangos: ->
     @mangos.toFixed(0)
 
+Template.organisations.onCreated ->
+  @subscribe "Organisations"
+
 Template.organisations.onRendered ->
   $('.addOrganisation').validate
     rules:

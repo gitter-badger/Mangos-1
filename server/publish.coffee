@@ -3,13 +3,19 @@ Meteor.publish 'People', ->
   Meteor.users.find()
 #Publish all Transactions
 Meteor.publish 'Transactions', ->
-  Transactions.find()
+  Transactions.find {},
+    limit: 100,
+    sort:
+      createdAt: -1
 #Publish all Projects
 Meteor.publish 'Projects', ->
   Projects.find()
 #Publish all Verifications
 Meteor.publish 'Verifications', ->
-  Verifications.find()
+  Verifications.find {},
+    limit: 25,
+    sort:
+      createdAt: -1
 #Publish all Actions
 Meteor.publish 'Actions', ->
   Actions.find()
@@ -29,3 +35,7 @@ Meteor.publish 'History', ->
 #Publish all Objects
 Meteor.publish 'Objects', ->
   Objects.find()
+
+#Publish all Objects
+Meteor.publish 'SingleOrganisation', (docId) ->
+  Organisations.findOne(docId)

@@ -2,7 +2,7 @@
 interval = (24 * 60) # 1Sec is 1min or 1min is 1h or 24min is 1day or 12h is 1month or 3.5 days is 1 year or 35days ~10 years
 dailyUD = 24
 addUD = (dailyUD / interval)
-demurrageFee = 0.2
+demurrageFee = 0.1
 dailyRotting = (demurrageFee / 365)
 
 #Distribute the UD

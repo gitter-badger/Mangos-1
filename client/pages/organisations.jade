@@ -9,11 +9,12 @@ template(name='organisations')
 
     .ui.divider
     .ui.cards
-      each organisations
-        a.ui.card(href="{{pathFor 'orgaLayout'}}")
-          .image
-            img(src="#{banner}")
-          .content
-            img.floated.right.mini.ui.image(src="#{createdBy.profile.picture}")
-            .header #{name}
-            .meta #{createdBy.username}
+      if Template.subscriptionsReady
+        each organisations
+          a.ui.card(href="{{pathFor 'orgaLayout'}}")
+            .image
+              img(src="#{banner}")
+            .content
+              img.floated.right.mini.ui.image(src="#{createdBy.profile.picture}")
+              .header #{name}
+              .meta #{createdBy.username}

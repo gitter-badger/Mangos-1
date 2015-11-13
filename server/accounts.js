@@ -6,7 +6,7 @@ Accounts.onCreateUser(function(options, user) {
     user.verifyLevel = 1
   }
   else {
-    user.verifyLevel = 0
+    user.verifyLevel = 1
   }
   user.years = 0;
   user.points = 0;
