@@ -36,6 +36,19 @@ Meteor.publish 'History', ->
 Meteor.publish 'Objects', ->
   Objects.find()
 
-#Publish all Objects
-Meteor.publish 'SingleOrganisation', (docId) ->
-  Organisations.findOne(docId)
+Meteor.publish 'orgaOverview', (orgaId, limit) ->
+  Transactions.find $or: [
+    { receiver: orgaId }
+    { sender: orgaId }
+  ],
+    limit: limit,
+    sort:
+      createdAt: -1
+
+###
+Meteor.publish 'orgaOverview', (orgaId, limit) ->
+  Transactions.find $or: [
+    { receiver: orgaId }
+    { sender: orgaId }
+  ]
+  return @ready()###

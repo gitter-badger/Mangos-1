@@ -7,12 +7,7 @@ Template.orgaOverview.helpers
     @mangos.toFixed(3)
 
   transactions: ->
-    Transactions.find '$or': [
-        { receiver: @_id }
-        { sender: @_id }
-      ],
-      sort:
-        createdAt: -1
+    Transactions.find()
   receiverProject: ->
     Projects.findOne(@receiver)
   receiverOrga: ->
@@ -32,6 +27,11 @@ Template.orgaOverview.helpers
   organisationToOrganisation: ->
     if @type is "organisationToOrganisation"
       return true
+
+Template.orgaOverview.onCreated ->
+  orgaId = Router.current().params._id
+  limit = 20
+  Meteor.subscribe 'orgaOverview', orgaId, limit
 
 Template.orgaOverview.onRendered ->
   $('textarea').autosize()

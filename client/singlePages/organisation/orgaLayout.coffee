@@ -10,6 +10,10 @@ Template.orgaLayout.helpers
   messageCount: ->
     Messages.find({childOf: @_id}).count()
 
+Template.orgaLayout.onCreated ->
+  orgaId = Router.current().params._id
+  Meteor.subscribe 'orgaLayout', orgaId
+
 Template.orgaLayout.onRendered ->
   @$(".menu .item").tab()
   $('.payProject').validate
