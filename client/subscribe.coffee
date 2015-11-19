@@ -6,5 +6,5 @@ Meteor.subscribe 'Actions'
 Meteor.subscribe 'Shares'
 Meteor.subscribe 'Messages'
 # Meteor.subscribe 'Organisations' #
-Meteor.subscribe 'History'
+Meteor.subscribe 'Objects'
 

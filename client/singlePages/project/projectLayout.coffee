@@ -83,4 +83,3 @@ Template.projectLayout.events
         else
           false
     ).modal 'show'
-

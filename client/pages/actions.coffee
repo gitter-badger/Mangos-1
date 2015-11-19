@@ -11,3 +11,11 @@ Template.actions.helpers
     @mangosWanted.toFixed(2)
   mangosReceived: ->
     @mangosReceived.toFixed(2)
+  
+
+Template.actions.onRendered ->
+  addObject = Objects.findOne({type: "addAction"})
+  $("."+addObject.type).form
+    on: addObject.on
+    inline: addObject.inline
+    fields: addObject.fields

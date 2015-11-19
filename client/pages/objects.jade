@@ -17,17 +17,15 @@ template(name='objects')
         button.ui.button.fluid(type='submit') Add
 
   .ui.divider
-  if Template.subscriptionsReady
-    table.ui.very.basic.table
-      thead
-        tr
-          th createdBy
-          th @id
-          th @type
-          th @value
-          th @context
+  
+  table.ui.very.basic.table
+    thead
+      tr
+        th createdBy
+        th id
+        th type
 
-      tbody
+    tbody
       each objects
         tr
           td
@@ -40,5 +38,3 @@ template(name='objects')
           td
             a(href="/objects/#{_id}") #{_id}
           td #{type}
-          td #{value}
-          td #{context.type} #{context.value}

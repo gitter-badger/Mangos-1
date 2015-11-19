@@ -1,56 +1,28 @@
 Meteor.startup ->
-  if Objects.find().count() is 0
-    typeId =
-      Objects.insert
-        value: "@type"
-        type: "@type"
-
-    valueId =
-      Objects.insert
-        context:
-          type: typeId
-        value: "@value"
-        type: typeId
-
-    languageId =
-      Objects.insert
-        context:
-          type: typeId
-          value: valueId
-        value: "@language"
-        type: typeId
-
-    contextId =
-      Objects.insert
-        context:
-          type: typeId
-          value: valueId
-        value: "@context"
-        type: typeId
-
-    valdiateId =
-      Objects.insert
-        context:
-          type: typeId
-          value: valueId
-        value: "validate"
-        type: typeId
-
-    stringId =
-      Objects.insert
-        context:
-          type: typeId
-          value: valueId
-        value: "string"
-        type: typeId
-
-    Objects.update valueId,
-      $set:
-        context:
-          value: valueId
-
-    Objects.update typeId,
-      $set:
-        context:
-          value: valueId
-          type: typeId
+  if Objects.findOne({type: "addAction"})
+    console.log "addAction is already existing!"
+  else
+    Objects.insert
+      type: "addAction"
+      createdBy: "samuelandert.com"
+      createdAt: new Date()
+      on: "change"
+      inline: true
+      fields:
+        description:
+          identifier: 'description'
+          rules: [
+            {
+              type  : 'empty'
+              prompt: 'please enter a value'
+            }
+            {
+              type  : 'maxLength[120]',
+              prompt: 'Please enter at most 120 characters'
+            }
+            {
+              type  : 'minLength[3]',
+              prompt: 'Please enter at least 3 characters'
+            }
+          ]
+    console.log "addAction has been initialized"
