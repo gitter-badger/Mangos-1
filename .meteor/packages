@@ -9,7 +9,6 @@ coffeescript
 iron:router
 stylus
 semantic:ui
-insecure
 flemay:less-autoprefixer
 meteorhacks:search-source
 momentjs:moment
